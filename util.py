@@ -35,6 +35,13 @@ def save_map(data,path,category,flname):
         os.mkdir(save_path)
     cv2.imwrite(os.path.join(save_path,flname+'_soft.jpg'),norm_map)
 
+def save_map_salicon(data,path,flname):
+    norm_map = (data-np.min(data))/(np.max(data)-np.min(data))
+    norm_map *= 255
+    if not os.path.exists(path):
+        os.mkdir(path)
+    cv2.imwrite(os.path.join(path,flname+'.jpg'),norm_map)
+
 def prepro_img(img):
     mean = [103.939, 116.779, 123.68]
     mean = np.array(mean)
